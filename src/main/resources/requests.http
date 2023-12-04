@@ -1,0 +1,43 @@
+# Register a New Player
+POST http://localhost:8089/register
+Content-Type: application/json
+
+{
+  "username": "bewUser",
+  "password": "qwerty"
+}
+
+####
+
+# Authentication Request
+POST http://localhost:8089/auth
+Content-Type: application/json
+
+{
+"username": "Diana",
+"password": "qwerty"
+}
+
+####
+# Retrieve Player History
+GET http://localhost:8089/history
+Content-Type: application/json
+
+####
+
+# Create a Transaction
+POST http://localhost:8089/transaction
+Content-Type: application/json
+
+{
+  "amount": 270.0,
+  "type": "CREDIT"
+}
+
+
+###
+
+
+GET http://localhost:8089/transaction
+Content-Type: application/json
+

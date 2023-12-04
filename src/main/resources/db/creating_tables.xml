@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="create-my-schema" author="Konler">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS my_schema;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-service-schema" author="Konler">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS service;
+        </sql>
+    </changeSet>
+
+
+
+    <changeSet id="create-players-table" author="Konler">
+        <createTable catalogName="my_schema" schemaName="my_schema" tableName="players">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="balance" type="DOUBLE PRECISION">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-transactions-table" author="Konler">
+    <createTable catalogName="my_schema" schemaName="my_schema" tableName="transactions">
+        <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="type" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="amount" type="DOUBLE PRECISION">
+            <constraints nullable="false"/>
+        </column>
+        <column name="state" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="player_id" type="BIGINT">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    </changeSet>
+
+
+    <changeSet id="create-history-table" author="Konler">
+    <createTable catalogName="my_schema" schemaName="my_schema" tableName="history">
+        <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="player_id" type="BIGINT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="action" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="time" type="TIMESTAMP">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="create-liquibase-service-table" author="Konler">
+    <createTable catalogName="service" schemaName="service" tableName="DATABASECHANGELOG">
+        <column name="ID" type="INT">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+    </createTable>
+    </changeSet>
+
+</databaseChangeLog>
